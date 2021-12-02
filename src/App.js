@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { fetchImages } from "./api";
-import { fetchText } from "./api";
-import { fetchVideo } from "./api";
+import { fetchImages } from "./Image";
+import { fetchText } from "./Text";
+import { fetchVideo } from "./Video";
 
 function Header() {
   return (
@@ -27,7 +27,6 @@ function Image(props) {
   );
 }
 
-
 function Text(props) {
   return (
     <figure className="text">
@@ -52,7 +51,7 @@ function Loading() {
   return <p>Loading...</p>;
 }
 
-function Gallery(props) {
+function ImageGallery(props) {
   const { urls } = props;
   if (urls == null) {
     return <Loading />;
@@ -63,7 +62,41 @@ function Gallery(props) {
         return (
           <div key={url} className="column is-3">
             <Image src={url} />
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+function TextGallery(props) {
+  const { urls } = props;
+  if (urls == null) {
+    return <Loading />;
+  }
+  return (
+    <div className="columns is-vcentered is-multiline">
+      {urls.map((url) => {
+        return (
+          <div key={url} className="column is-3">
             <Text src={url} />
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+function VideoGallery(props) {
+  const { urls } = props;
+  if (urls == null) {
+    return <Loading />;
+  }
+  return (
+    <div className="columns is-vcentered is-multiline">
+      {urls.map((url) => {
+        return (
+          <div key={url} className="column is-3">
             <Video src={url} />
           </div>
         );
@@ -103,35 +136,37 @@ function Form(props) {
 }
 
 function Main() {
-  const [urls, setUrls] = useState(null);
+  const [imageurls, setImageurls] = useState(null);
+  const [texturls, setTexturls] = useState(null);
+  const [videourls, setVideourls] = useState(null);
 
   useEffect(() => {
-    fetchImages("sakura").then((urls) => {
-      setUrls(urls);
+    fetchImages("sakura").then((imageurls) => {
+      setImageurls(imageurls);
     });
-    fetchText("sakura").then((urls) => {
-      setUrls(urls);
+    fetchText("sakura").then((texturls) => {
+      setTexturls(texturls);
     });
-    fetchVideo("sakura").then((urls) => {
-      setUrls(urls);
+    fetchVideo("sakura").then((videourls) => {
+      setVideourls(videourls);
     });
   }, []);
 
   function reloadImages(flower) {
-    fetchImages(flower).then((urls) => {
-      setUrls(urls);
+    fetchImages(flower).then((imageurls) => {
+      setImageurls(imageurls);
     });
   }
 
   function reloadText(flower) {
-    fetchText(flower).then((urls) => {
-      setUrls(urls);
+    fetchText(flower).then((texturls) => {
+      setTexturls(texturls);
     });
   }
 
   function reloadVideo(flower) {
-    fetchVideo(flower).then((urls) => {
-      setUrls(urls);
+    fetchVideo(flower).then((videourls) => {
+      setVideourls(videourls);
     });
   }
 
@@ -139,15 +174,25 @@ function Main() {
     <main>
       <section className="section">
         <div className="container">
-          <Form onFormSubmit={reloadImages} onFormSubmit={reloadText} onFormSubmit={reloadVideo}/>
+          <Form onFormSubmit={reloadImages} onFormSubmit={reloadText} onFormSubmit={reloadVideo} />
         </div>
       </section>
       <section className="section">
         <div className="container">
-          <Gallery urls={urls} />
+          <ImageGallery imageurls={imageurls} />
         </div>
       </section>
-    </main>
+      <section className="section">
+        <div className="container">
+          <TextGallery texturls={texturls} />
+        </div>
+      </section>
+      <section className="section">
+        <div className="container">
+          <VideoGallery videourls={videourls} />
+        </div>
+      </section>
+    </main >
   );
 }
 
