@@ -1,0 +1,40 @@
+{
+    "message": [
+        {
+            "video": "image/tutuji/sample.mp4"
+        },
+        {
+            "number": "No.0",
+            "image": "image/tutuji/0.jpeg"
+        },
+        {
+            "number": "No.1",
+            "image": "image/tutuji/1.jpeg"
+        },
+        {
+            "number": "No.2",
+            "image": "image/tutuji/2.jpeg"
+        },
+        {
+            "number": "No.3",
+            "image": "image/tutuji/3.jpeg"
+        },
+        {
+            "number": "No.4",
+            "image": "image/tutuji/4.jpeg"
+        },
+        {
+            "text": [
+                "ツツジ(英名:Azalea)",
+                "植物界 Plantae",
+                "被子植物 angiosperms",
+                "真正双子葉類 eudicots",
+                "キク類 asterids",
+                "ツツジ目 Ericales",
+                "ツツジ科 Ericaceae",
+                "ツツジ属 Rhododendron"
+            ]
+        }
+    ],
+    "status": "success"
+}
