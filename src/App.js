@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
-import { fetchImages } from "./Image";
-import { fetchText } from "./Text";
-import { fetchVideo } from "./Video";
+import { fetchObject } from "./api";
 
 function Header() {
   return (
@@ -12,6 +10,21 @@ function Header() {
         </div>
       </div>
     </header>
+  );
+}
+
+function Video(props) {
+  return (
+    <section className="section">
+      <video src={props.src} alt="Flower video" autoplay muted playsinline />
+    </section >
+  );
+}
+
+
+function Number(props) {
+  return (
+    <p>{props.src}</p>
   );
 }
 
@@ -29,21 +42,9 @@ function Image(props) {
 
 function Text(props) {
   return (
-    <figure className="text">
-      <p src={props.src} />
-    </figure>
-  );
-}
-
-function Video(props) {
-  return (
-    <div className="card">
-      <div className="card-video">
-        <figure className="video">
-          <video src={props.src} alt="Flower video" />
-        </figure>
-      </div>
-    </div>
+    <section className="section">
+      <p>{props.src}</p>
+    </section >
   );
 }
 
@@ -51,56 +52,41 @@ function Loading() {
   return <p>Loading...</p>;
 }
 
-function ImageGallery(props) {
+function Gallery(props) {
   const { urls } = props;
   if (urls == null) {
     return <Loading />;
   }
   return (
     <div className="columns is-vcentered is-multiline">
-      {urls.map((url) => {
-        return (
-          <div key={url} className="column is-3">
-            <Image src={url} />
-          </div>
-        );
-      })}
-    </div>
-  );
-}
 
-function TextGallery(props) {
-  const { urls } = props;
-  if (urls == null) {
-    return <Loading />;
-  }
-  return (
-    <div className="columns is-vcentered is-multiline">
       {urls.map((url) => {
         return (
           <div key={url} className="column is-3">
-            <Text src={url} />
+            <Video src={url.video} />
           </div>
         );
       })}
-    </div>
-  );
-}
 
-function VideoGallery(props) {
-  const { urls } = props;
-  if (urls == null) {
-    return <Loading />;
-  }
-  return (
-    <div className="columns is-vcentered is-multiline">
       {urls.map((url) => {
         return (
           <div key={url} className="column is-3">
-            <Video src={url} />
+
+            <Number src={url.number} />
+            <Image src={url.img} />
+
           </div>
         );
       })}
+
+      {urls.map((url) => {
+        return (
+          <div key={url} className="column is-3">
+            <Text src={url.text} />
+          </div>
+        );
+      })}
+
     </div>
   );
 }
@@ -136,63 +122,47 @@ function Form(props) {
 }
 
 function Main() {
-  const [imageurls, setImageurls] = useState(null);
-  const [texturls, setTexturls] = useState(null);
-  const [videourls, setVideourls] = useState(null);
+  const [urls, setUrls] = useState([]);
 
   useEffect(() => {
-    fetchImages("sakura").then((imageurls) => {
-      setImageurls(imageurls);
-    });
-    fetchText("sakura").then((texturls) => {
-      setTexturls(texturls);
-    });
-    fetchVideo("sakura").then((videourls) => {
-      setVideourls(videourls);
+    fetchObject("sakura").then((objURLs) => {
+      objURLs.map(obj => {
+        setUrls(url => ([
+          ...url,
+          {
+            video: obj.video,
+            img: obj.image,
+            number: obj.number,
+            text: obj.text
+          }
+        ]));
+      });
     });
   }, []);
 
-  function reloadImages(flower) {
-    fetchImages(flower).then((imageurls) => {
-      setImageurls(imageurls);
+  function reloadObject(flower) {
+    fetchObject(flower).then((objURLs) => {
+      objURLs.map((obj) => {
+        urls.push({ obj: obj });
+      });
+      setUrls(urls);
     });
-  }
-
-  function reloadText(flower) {
-    fetchText(flower).then((texturls) => {
-      setTexturls(texturls);
-    });
-  }
-
-  function reloadVideo(flower) {
-    fetchVideo(flower).then((videourls) => {
-      setVideourls(videourls);
-    });
+    setUrls(urls);
   }
 
   return (
     <main>
       <section className="section">
         <div className="container">
-          <Form onFormSubmit={reloadImages} onFormSubmit={reloadText} onFormSubmit={reloadVideo} />
+          <Form onFormSubmit={reloadObject} />
         </div>
       </section>
       <section className="section">
         <div className="container">
-          <ImageGallery imageurls={imageurls} />
+          <Gallery urls={urls} />
         </div>
       </section>
-      <section className="section">
-        <div className="container">
-          <TextGallery texturls={texturls} />
-        </div>
-      </section>
-      <section className="section">
-        <div className="container">
-          <VideoGallery videourls={videourls} />
-        </div>
-      </section>
-    </main >
+    </main>
   );
 }
 
