@@ -1,0 +1,41 @@
+{
+    "message": [
+        {
+            "video": "image/sakura/sample.mp4"
+        },
+        {
+            "number": "No.0",
+            "image": "image/sakura/0.jpeg"
+        },
+        {
+            "number": "No.1",
+            "image": "image/sakura/1.jpeg"
+        },
+        {
+            "number": "No.2",
+            "image": "image/sakura/2.jpeg"
+        },
+        {
+            "number": "No.3",
+            "image": "image/sakura/3.jpeg"
+        },
+        {
+            "number": "No.4",
+            "image": "image/sakura/4.jpeg"
+        },
+        {
+            "text": [
+                "サクラ(英名:Cherry blossom)",
+                "植物界 Plantae",
+                "被子植物門 Magnoliophyta",
+                "双子葉植物綱 Magnoliopsida",
+                "バラ亜綱 Rosidae",
+                "バラ目 Rosales",
+                "バラ科 Rosaceae",
+                "サクラ亜科 Amygdaloideae",
+                "サクラ属 Cerasus もしくは スモモ属 Prunus"
+            ]
+        }
+    ],
+    "status": "success"
+}
