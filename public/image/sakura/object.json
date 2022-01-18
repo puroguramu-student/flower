@@ -24,17 +24,31 @@
             "image": "image/sakura/4.jpeg"
         },
         {
-            "text": [
-                "サクラ(英名:Cherry blossom)",
-                "植物界 Plantae",
-                "被子植物門 Magnoliophyta",
-                "双子葉植物綱 Magnoliopsida",
-                "バラ亜綱 Rosidae",
-                "バラ目 Rosales",
-                "バラ科 Rosaceae",
-                "サクラ亜科 Amygdaloideae",
-                "サクラ属 Cerasus もしくは スモモ属 Prunus"
-            ]
+            "text": "サクラ(英名:Cherry blossom)"
+        },
+        {
+            "text": "植物界 Plantae"
+        },
+        {
+            "text": "被子植物門 Magnoliophyta"
+        },
+        {
+            "text": "双子葉植物綱 Magnoliopsida"
+        },
+        {
+            "text": "バラ亜綱 Rosidae"
+        },
+        {
+            "text": "バラ目 Rosales"
+        },
+        {
+            "text": "バラ科 Rosaceae"
+        },
+        {
+            "text": "サクラ亜科 Amygdaloideae"
+        },
+        {
+            "text": "サクラ属 Cerasus もしくは スモモ属 Prunus"
         }
     ],
     "status": "success"
