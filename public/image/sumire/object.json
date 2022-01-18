@@ -24,18 +24,34 @@
             "image": "image/sumire/4.jpeg"
         },
         {
-            "text": [
-                "スミレ(英名:Viola mandshurica)",
-                "植物界 Plantae",
-                "被子植物 angiosperms",
-                "真正双子葉類 eudicots",
-                "バラ類 Rosids",
-                "真正バラ類I Eurosids I",
-                "キントラノオ目 Malpighiales",
-                "スミレ科 Violaceae",
-                "スミレ属 Viola",
-                "スミレ V. mandshurica"
-            ]
+            "text": "スミレ(英名:Viola mandshurica)"
+        },
+        {
+            "text": "植物界 Plantae"
+        },
+        {
+            "text": "被子植物 angiosperms"
+        },
+        {
+            "text": "真正双子葉類 eudicots"
+        },
+        {
+            "text": "バラ類 Rosids"
+        },
+        {
+            "text": "真正バラ類I Eurosids I"
+        },
+        {
+            "text": "キントラノオ目 Malpighiales"
+        },
+        {
+            "text": "スミレ科 Violaceae"
+        },
+        {
+            "text": "スミレ属 Viola"
+        },
+        {
+            "text": "スミレ V. mandshurica"
         }
     ],
     "status": "success"
