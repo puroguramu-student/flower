@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import reactDom from "react-dom";
 import { fetchObject } from "./api";
 
 function Header() {
@@ -16,11 +17,10 @@ function Header() {
 function Video(props) {
   return (
     <section className="section">
-      <video src={props.src} alt="Flower video" autoplay muted playsinline />
+      <video preload="auto" width="500px" height="280px" src={props.src} controls loop />
     </section >
   );
 }
-
 
 function Number(props) {
   return (
@@ -37,14 +37,15 @@ function Image(props) {
         </figure>
       </div>
     </div>
+
   );
 }
 
 function Text(props) {
   return (
-    <section className="section">
+    <div>
       <p>{props.src}</p>
-    </section >
+    </div>
   );
 }
 
@@ -57,37 +58,99 @@ function Gallery(props) {
   if (urls == null) {
     return <Loading />;
   }
+  var clean = urls.filter(Boolean);
   return (
     <div className="columns is-vcentered is-multiline">
 
-      {urls.map((url) => {
+      {clean.map((url) => {
         return (
-          <div key={url} className="column is-3">
-            <Video src={url.video} />
+          <div key={url} >
+
+            {
+              !function () {
+                if (url == []) {
+                  return null;
+                }
+              }
+            }
+
+            < Video src={url.video} />
           </div>
         );
       })}
 
-      {urls.map((url) => {
+      {clean.map((url) => {
         return (
           <div key={url} className="column is-3">
 
             <Number src={url.number} />
-            <Image src={url.img} />
+            <Image src={url.image} />
 
-          </div>
-        );
-      })}
-
-      {urls.map((url) => {
-        return (
-          <div key={url} className="column is-3">
-            <Text src={url.text} />
           </div>
         );
       })}
 
     </div>
+  );
+}
+
+/* function Gallery(props) {
+  const { urls } = props;
+  if (urls == null) {
+    return <Loading />;
+  }
+  return (
+    <div className="columns is-vcentered is-multiline">
+ 
+      {urls.map((url) => {
+        return (
+          <div key={url} >
+ 
+            {
+              !function () {
+                if (url == []) {
+                  return null;
+                }
+              }
+            }
+ 
+            < Video src={url.video} />
+          </div>
+        );
+      })}
+ 
+      {urls.map((url) => {
+        return (
+          <div key={url} className="column is-3">
+ 
+            <Number src={url.number} />
+            <Image src={url.image} />
+ 
+          </div>
+        );
+      })}
+ 
+    </div>
+  );
+} */
+
+function TextGallery(props) {
+  const { urls } = props;
+  if (urls == null) {
+    return <Loading />;
+  }
+  return (
+    <div>
+
+      {urls.map((url) => {
+        return (
+          <div key={url}>
+            <Text src={url.text} />
+          </div>
+        );
+      })}
+
+    </div >
   );
 }
 
@@ -117,7 +180,7 @@ function Form(props) {
           </div>
         </div>
       </form>
-    </div>
+    </div >
   );
 }
 
@@ -126,28 +189,30 @@ function Main() {
 
   useEffect(() => {
     fetchObject("sakura").then((objURLs) => {
-      objURLs.map(obj => {
-        setUrls(url => ([
-          ...url,
-          {
-            video: obj.video,
-            img: obj.image,
-            number: obj.number,
-            text: obj.text
-          }
-        ]));
-      });
+      setUrls(objURLs);
+      /*  objURLs.map(obj => {
+         setUrls(urls => ([
+           ...urls,
+           {
+             video: obj.video,
+             number: obj.number,
+             img: obj.image,
+             text: obj.text
+           }
+         ]));
+       });*/
     });
   }, []);
 
   function reloadObject(flower) {
     fetchObject(flower).then((objURLs) => {
-      objURLs.map((obj) => {
+      setUrls(objURLs);
+      /* objURLs.map((obj) => {
         urls.push({ obj: obj });
       });
-      setUrls(urls);
+      setUrls(urls); */
     });
-    setUrls(urls);
+    /* setUrls(urls); */
   }
 
   return (
@@ -160,6 +225,7 @@ function Main() {
       <section className="section">
         <div className="container">
           <Gallery urls={urls} />
+          <TextGallery urls={urls} />
         </div>
       </section>
     </main>
