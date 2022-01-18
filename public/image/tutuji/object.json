@@ -24,16 +24,28 @@
             "image": "image/tutuji/4.jpeg"
         },
         {
-            "text": [
-                "ツツジ(英名:Azalea)",
-                "植物界 Plantae",
-                "被子植物 angiosperms",
-                "真正双子葉類 eudicots",
-                "キク類 asterids",
-                "ツツジ目 Ericales",
-                "ツツジ科 Ericaceae",
-                "ツツジ属 Rhododendron"
-            ]
+            "text": "ツツジ(英名:Azalea)"
+        },
+        {
+            "text": "植物界 Plantae"
+        },
+        {
+            "text": "被子植物 angiosperms"
+        },
+        {
+            "text": "真正双子葉類 eudicots"
+        },
+        {
+            "text": "キク類 asterids"
+        },
+        {
+            "text": "ツツジ目 Ericales"
+        },
+        {
+            "text": "ツツジ科 Ericaceae"
+        },
+        {
+            "text": "ツツジ属 Rhododendron"
         }
     ],
     "status": "success"
