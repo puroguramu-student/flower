@@ -58,28 +58,18 @@ function Gallery(props) {
   if (urls == null) {
     return <Loading />;
   }
-  var clean = urls.filter(Boolean);
   return (
     <div className="columns is-vcentered is-multiline">
 
-      {clean.map((url) => {
+      {urls.map((url) => {
         return (
           <div key={url} >
-
-            {
-              !function () {
-                if (url == []) {
-                  return null;
-                }
-              }
-            }
-
             < Video src={url.video} />
           </div>
         );
       })}
 
-      {clean.map((url) => {
+      {urls.map((url) => {
         return (
           <div key={url} className="column is-3">
 
@@ -93,46 +83,6 @@ function Gallery(props) {
     </div>
   );
 }
-
-/* function Gallery(props) {
-  const { urls } = props;
-  if (urls == null) {
-    return <Loading />;
-  }
-  return (
-    <div className="columns is-vcentered is-multiline">
- 
-      {urls.map((url) => {
-        return (
-          <div key={url} >
- 
-            {
-              !function () {
-                if (url == []) {
-                  return null;
-                }
-              }
-            }
- 
-            < Video src={url.video} />
-          </div>
-        );
-      })}
- 
-      {urls.map((url) => {
-        return (
-          <div key={url} className="column is-3">
- 
-            <Number src={url.number} />
-            <Image src={url.image} />
- 
-          </div>
-        );
-      })}
- 
-    </div>
-  );
-} */
 
 function TextGallery(props) {
   const { urls } = props;
